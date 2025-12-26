@@ -16,7 +16,7 @@ pricing = {
     "t2.small": 0.023,
     "t2.medium": 0.0464
 }
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 
 launch_time = instance["LaunchTime"]
 ist = timezone(timedelta(hours=5, minutes=30))
