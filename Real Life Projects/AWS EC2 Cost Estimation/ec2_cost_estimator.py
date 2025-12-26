@@ -19,14 +19,17 @@ pricing = {
 from datetime import datetime, timezone
 
 launch_time = instance["LaunchTime"]
-current_time = datetime.now(timezone.utc)
-
+ist = timezone(timedelta(hours=5, minutes=30))
+current_time = datetime.now(ist)
 running_hours = (current_time - launch_time).total_seconds() / 3600
 instance_type = instance["InstanceType"]
 hourly_rate = pricing.get(instance_type, 0)
 usd_to_inr = 89.0
 total_cost = running_hours * hourly_rate
 monthly_estimate = hourly_rate * 24 * 30
+total_seconds = running_hours * 3600
+minutes = int(total_seconds // 60)
+seconds = total_seconds % 60
 
 print("\n--- COST REPORT ---")
 print(f"Running Hours: {minutes} min {seconds:.0f} sec")
